@@ -1,1 +1,1 @@
-require 'fakeredis/rspec'
+require "fakeredis/rspec"
