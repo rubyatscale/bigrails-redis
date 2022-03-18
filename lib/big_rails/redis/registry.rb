@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "redis"
+
 module BigRails
   module Redis
     class Registry
@@ -67,9 +69,7 @@ module BigRails
       end
 
       def verify_connection(connection)
-        connection.with do |redis|
-          redis.ping == "PONG"
-        end
+        connection.with(&:ping) == "PONG"
       end
 
       def validate_name(name)
