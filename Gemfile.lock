@@ -82,6 +82,8 @@ GEM
     diff-lcs (1.5.0)
     digest (3.1.0)
     erubi (1.10.0)
+    fakeredis (0.8.0)
+      redis (~> 4.1)
     globalid (1.0.0)
       activesupport (>= 5.0)
     i18n (1.10.0)
@@ -202,6 +204,7 @@ PLATFORMS
 
 DEPENDENCIES
   bigrails-redis!
+  fakeredis
   rake (~> 13.0)
   rspec (~> 3.0)
   standard (~> 1.3)
