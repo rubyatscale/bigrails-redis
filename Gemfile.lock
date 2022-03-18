@@ -76,6 +76,7 @@ GEM
     ast (2.4.2)
     builder (3.2.4)
     concurrent-ruby (1.1.9)
+    connection_pool (2.2.5)
     crass (1.0.6)
     diff-lcs (1.5.0)
     digest (3.1.0)
@@ -202,6 +203,7 @@ PLATFORMS
 
 DEPENDENCIES
   bigrails-redis!
+  connection_pool
   fakeredis
   rake
   rspec
