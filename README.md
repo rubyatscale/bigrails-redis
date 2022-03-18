@@ -1,4 +1,4 @@
-# BigRails::Redis
+# BigRails::Redis [![Ruby](https://github.com/BigRails/bigrails-redis/actions/workflows/main.yml/badge.svg)](https://github.com/BigRails/bigrails-redis/actions/workflows/main.yml)
 
 A simple Redis connection manager for Rails applications with distributed and [ConnectionPool](https://github.com/mperham/connection_pool) support.
 
