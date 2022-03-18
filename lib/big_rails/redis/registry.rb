@@ -33,7 +33,7 @@ module BigRails
       end
 
       def each(&block)
-        configurations.keys.map { self.for(name) }.each(&block)
+        configurations.keys.map { |name| self.for(name) }.each(&block)
       end
 
       def verify!(name = nil)
