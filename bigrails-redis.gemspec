@@ -17,7 +17,7 @@ Gem::Specification.new do |spec|
   spec.metadata["source_code_uri"] = "https://github.com/BigRails/bigrails-redis"
   spec.metadata["changelog_uri"] = "https://github.com/bigrails/bigrails-redis/releases"
 
-  spec.files = Dir['{lib,exe}/**/*', 'README.md']
+  spec.files = Dir["{lib,exe}/**/*", "README.md"]
   spec.bindir = "exe"
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
 

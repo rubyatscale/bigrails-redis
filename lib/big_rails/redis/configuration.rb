@@ -21,7 +21,7 @@ module BigRails
       def ensure_connection_pool_added!
         require "connection_pool"
       rescue LoadError => e
-        $stderr.puts "You don't have connection_pool installed in your application. Please add it to your Gemfile and run bundle install"
+        warn "You don't have connection_pool installed in your application. Please add it to your Gemfile and run bundle install"
         raise e
       end
     end
