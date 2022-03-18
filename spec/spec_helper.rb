@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "bigrails/redis"
+require "bigrails-redis"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
