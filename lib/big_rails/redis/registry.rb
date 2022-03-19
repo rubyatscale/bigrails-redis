@@ -69,7 +69,11 @@ module BigRails
       end
 
       def verify_connection(connection)
-        connection.with(&:ping) == "PONG"
+        connection.with do |conn|
+          connected = conn.connected?
+          conn.ping
+          conn.quit unless connected
+        end
       end
 
       def validate_name(name)
