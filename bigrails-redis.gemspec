@@ -22,5 +22,4 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
 
   spec.add_dependency "rails", ">= 6"
-  spec.add_dependency "redis", "~> 4.0"
 end

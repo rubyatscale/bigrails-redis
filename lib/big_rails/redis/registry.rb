@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "redis"
-
 module BigRails
   module Redis
     class Registry
@@ -61,10 +59,10 @@ module BigRails
       end
 
       def build_wrapped_connection(connection)
-        if connection.is_a?(::Redis)
-          connection
-        else
+        if connection.is_a?(::ConnectionPool)
           ::ConnectionPool.wrap(pool: connection)
+        else
+          connection
         end
       end
 
