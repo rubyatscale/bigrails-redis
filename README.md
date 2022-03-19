@@ -1,6 +1,6 @@
 # BigRails::Redis [![Ruby](https://github.com/BigRails/bigrails-redis/actions/workflows/main.yml/badge.svg)](https://github.com/BigRails/bigrails-redis/actions/workflows/main.yml)
 
-A simple Redis connection manager for Rails applications with distributed and [ConnectionPool](https://github.com/mperham/connection_pool) support.
+A simple Redis connection manager for Rails applications with the need to manage multiple redis connections. It supports distributed and [ConnectionPool](https://github.com/mperham/connection_pool) out of the box.
 
 ## Installation
 
@@ -89,7 +89,7 @@ If you request a wrapped connection for a non-pooled connection, it'll just retu
 
 ### Verifying Connections
 
-This library also allows you to verify connections on demand. If you want, perform the verification in a startup health check to make sure all your connections are valid. It will perform a simple [`PING` command](https://redis.io/commands/PING). An error will be raised if the connection bad.
+This library also allows you to verify connections on demand. If you want, perform the verification in a startup health check to make sure all your connections are valid. It will perform a simple [`PING` command](https://redis.io/commands/PING) and clsoe the connection if it was originally closed. This is to help reduce the number of connections you actually need open. An error will be raised if the connection is bad.
 
 ```ruby
 # Verify all connections:
