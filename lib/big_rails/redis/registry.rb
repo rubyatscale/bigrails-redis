@@ -6,6 +6,9 @@ module BigRails
       class UnknownConnection < StandardError
       end
 
+      class VerificationError < StandardError
+      end
+
       attr_accessor :builder
 
       def initialize
@@ -36,11 +39,29 @@ module BigRails
         configurations.keys.map { |name| self.for(name) }.each(&block)
       end
 
-      def verify!(name = nil)
-        if name
-          verify_connection(self.for(name))
-        else
-          each { |connection| verify_connection(connection) }
+      def disconnect
+        each do |connection|
+          if connection.is_a?(::ConnectionPool)
+            connection.reload { |conn| conn.quit }
+          else
+            connection.quit
+          end
+        end
+      end
+
+      def verify!(*names)
+        names.map! { |name| validate_name(name) }
+        names = configurations.keys if names.empty?
+        names.each do |name|
+          self.for(name).with do |connection|
+            next if connection.connected?
+
+            begin
+              connection.quit
+            rescue
+              raise VerificationError, "verification for '#{name}' failed"
+            end
+          end
         end
 
         true
@@ -63,14 +84,6 @@ module BigRails
           ::ConnectionPool.wrap(pool: connection)
         else
           connection
-        end
-      end
-
-      def verify_connection(connection)
-        connection.with do |conn|
-          connected = conn.connected?
-          conn.ping
-          conn.quit unless connected
         end
       end
 

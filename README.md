@@ -95,8 +95,16 @@ This library also allows you to verify connections on demand. If you want, perfo
 # Verify all connections:
 Rails.application.redis.verify!
 
-# Verify a single connection:
-Rails.application.redis.verify!(:foobar)
+# Verify specific connections:
+Rails.application.redis.verify!(:foobar, :sidekiq)
+```
+
+### Disconnect Connections
+
+You can disconnect all connections with a single call. This is useful for "before fork" hooks.
+
+```ruby
+Rails.application.redis.disconnect
 ```
 
 ## Development

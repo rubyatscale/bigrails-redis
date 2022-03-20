@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    bigrails-redis (0.3.0)
+    bigrails-redis (0.4.0)
       rails (>= 6)
 
 GEM

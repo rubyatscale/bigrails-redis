@@ -75,9 +75,9 @@ RSpec.describe BigRails::Redis::Registry do
       it "verifies specified connection" do
         conn = instance.for("default")
         conn2 = instance.for("pooled")
-        expect(conn).to receive(:ping).and_call_original
+        expect(conn).to receive(:quit).and_call_original
         conn2.with do |redis|
-          expect(redis).to receive(:ping).and_call_original
+          expect(redis).to receive(:quit).and_call_original
         end
 
         instance.verify!("default")
@@ -89,9 +89,9 @@ RSpec.describe BigRails::Redis::Registry do
       it "verifies all connections" do
         conn = instance.for("default")
         conn2 = instance.for("pooled")
-        expect(conn).to receive(:ping).and_call_original
+        expect(conn).to receive(:quit).and_call_original
         conn2.with do |redis|
-          expect(redis).to receive(:ping).and_call_original
+          expect(redis).to receive(:quit).and_call_original
         end
 
         instance.verify!
