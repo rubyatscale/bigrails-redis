@@ -42,9 +42,9 @@ module BigRails
       def disconnect
         each do |connection|
           if connection.is_a?(::ConnectionPool)
-            connection.reload { |conn| conn.quit }
+            connection.reload { |conn| conn.close }
           else
-            connection.quit
+            connection.close
           end
         end
       end
