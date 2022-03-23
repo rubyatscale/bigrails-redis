@@ -5,6 +5,7 @@ module BigRails
     class Registry
       class UnknownConnection < StandardError
       end
+
       class VerificationError < StandardError
       end
 
