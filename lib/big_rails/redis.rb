@@ -8,8 +8,9 @@ module BigRails
     extend ActiveSupport::Autoload
 
     autoload :ApplicationExtension
-    autoload :ConfigurationDsl
+    autoload :Builder
     autoload :Configuration
+    autoload :ConfigurationDsl
     autoload :Registry
   end
 end

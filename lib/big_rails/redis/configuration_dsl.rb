@@ -28,7 +28,7 @@ module BigRails
           raise ArgumentError, "connection named '#{name}' already registered"
         end
 
-        @__configurations[name.to_s] = Configuration.new(yield)
+        @__configurations[name.to_s] = yield
       end
     end
   end

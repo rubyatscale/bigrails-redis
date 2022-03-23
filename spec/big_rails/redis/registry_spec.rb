@@ -43,17 +43,14 @@ RSpec.describe BigRails::Redis::Registry do
 
   describe "#config_for" do
     it "returns config for specific connection" do
-      expect(instance.config_for("default").redis_options).to eq(
+      expect(instance.config_for("default")).to eq(
         url: "redis://localhost"
       )
 
-      expect(instance.config_for("pooled").redis_options).to eq(
-        url: "redis://localhost/2"
-      )
-
-      expect(instance.config_for("pooled").pool_options).to eq(
-        timeout: 5,
-        size: 5
+      expect(instance.config_for("pooled")).to eq(
+        url: "redis://localhost/2",
+        pool_timeout: 5,
+        pool_size: 5
       )
     end
   end
@@ -61,9 +58,9 @@ RSpec.describe BigRails::Redis::Registry do
   describe "#each" do
     it "iterates through all connections" do
       instance.each do |conn|
-        if conn.is_a? ::Redis
+        if conn.is_a?(::Redis)
           expect(conn).to eq(instance.for("default"))
-        elsif conn.is_a? ::ConnectionPool
+        elsif conn.is_a?(::ConnectionPool)
           expect(conn).to eq(instance.for("pooled"))
         end
       end

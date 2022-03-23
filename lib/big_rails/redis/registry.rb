@@ -5,7 +5,6 @@ module BigRails
     class Registry
       class UnknownConnection < StandardError
       end
-
       class VerificationError < StandardError
       end
 
@@ -14,11 +13,7 @@ module BigRails
       def initialize
         @connections = {}
         @wrapped_connections = {}
-
-        # Default redis builder.
-        @builder = ->(config) {
-          ActiveSupport::Cache::RedisCacheStore.build_redis(**config.redis_options)
-        }
+        @builder = Builder
       end
 
       def for(name, wrapped: false)
@@ -71,12 +66,7 @@ module BigRails
 
       def build_connection(name)
         config = configurations.fetch(name)
-
-        if config.pool_options.any?
-          ::ConnectionPool.new(config.pool_options) { builder.call(config) }
-        else
-          builder.call(config)
-        end
+        builder.call(config)
       end
 
       def build_wrapped_connection(connection)

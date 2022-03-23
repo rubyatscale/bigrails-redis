@@ -18,9 +18,15 @@ Create a redis configuration file:
 
 The configuration file (`config/redis.rb`) is just a plain Ruby file that will be evaluated when a connection is requested. Use the `connection` DSL method to declare your connections. The method will yield a block and you're expected to return a configuration hash.
 
-A configuration hash, by default, is passed to `ActiveSupport::Cache::RedisCacheStore.build_redis(...)`. This is a Rails supplied helper which allows for more options than demostrated above. You'll want to [check out its source](https://github.com/rails/rails/blob/main/activesupport/lib/active_support/cache/redis_cache_store.rb#L77-L100) to get a better idea of what it supports.
+The configuration hash is passed to the default `Builder`. You can customize the builder with your own object/proc that responds to `#call`.
 
 ```ruby
+# Change the default builder.
+Rails.application.redis.builder = ->(options) {
+  # options is the hash returned from the connection block.
+  Redis.new(...)
+}
+
 # Simple hardcoded example.
 connection(:default) do
   {
