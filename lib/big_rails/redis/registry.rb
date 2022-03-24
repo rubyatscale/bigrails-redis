@@ -28,7 +28,7 @@ module BigRails
       end
 
       def config_for(name)
-        configurations[validate_name(name)]
+        configurations[validate_name(name)].deep_dup
       end
 
       def each(&block)
@@ -66,8 +66,7 @@ module BigRails
       private
 
       def build_connection(name)
-        config = configurations.fetch(name)
-        builder.call(config)
+        builder.call(config_for(name))
       end
 
       def build_wrapped_connection(connection)
