@@ -54,7 +54,7 @@ end
 # Connection pool support.
 connection(:sidekiq) do
   {
-    url: "redis://localhost/2"
+    url: "redis://localhost/2",
     pool_timeout: 5,
     pool_size: 5
   }
