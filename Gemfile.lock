@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    bigrails-redis (0.7.0)
+    bigrails-redis (0.7.1)
       activesupport (>= 6)
       railties (>= 6)
       redis (>= 4)
@@ -111,6 +111,7 @@ GEM
     zeitwerk (2.5.4)
 
 PLATFORMS
+  arm64-darwin-20
   arm64-darwin-21
   x86_64-darwin-21
   x86_64-linux
@@ -125,4 +126,4 @@ DEPENDENCIES
   standard
 
 BUNDLED WITH
-   2.2.32
+   2.4.12
