@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    bigrails-redis (0.7.1)
+    bigrails-redis (0.7.2)
       activesupport (>= 6)
       railties (>= 6)
       redis (>= 4)
