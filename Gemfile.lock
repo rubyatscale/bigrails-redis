@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    bigrails-redis (0.7.1)
+    bigrails-redis (0.7.2)
       activesupport (>= 6)
       railties (>= 6)
       redis (>= 4)
@@ -42,12 +42,10 @@ GEM
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     method_source (1.0.0)
+    mini_portile2 (2.8.5)
     minitest (5.15.0)
-    nokogiri (1.13.4-arm64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.13.4-x86_64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.13.4-x86_64-linux)
+    nokogiri (1.13.4)
+      mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     parallel (1.22.1)
     parser (3.1.2.0)
@@ -113,6 +111,7 @@ GEM
 PLATFORMS
   arm64-darwin-20
   arm64-darwin-21
+  arm64-darwin-22
   x86_64-darwin-21
   x86_64-linux
 
