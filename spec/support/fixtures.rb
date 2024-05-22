@@ -9,8 +9,8 @@ module Spec
       def load_config(type)
         allow(Rails).to receive(:application).and_return(
           OpenStruct.new(paths: {
-                           "config" => [Pathname.new("spec/fixtures/#{type}").expand_path]
-                         })
+            "config" => [Pathname.new("spec/fixtures/#{type}").expand_path]
+          })
         )
       end
     end

@@ -31,8 +31,8 @@ module BigRails
         configurations[validate_name(name)].deep_dup
       end
 
-      def each(&block)
-        configurations.keys.map { |name| self.for(name) }.each(&block)
+      def each(&)
+        configurations.keys.map { |name| self.for(name) }.each(&)
       end
 
       def disconnect
