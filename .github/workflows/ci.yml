@@ -17,7 +17,7 @@ jobs:
           - 3.3
     env:
       BUNDLE_GEMFILE: Gemfile
-    name: "RSpec tests: Ruby ${{ matrix.ruby }}"
+    name: "Test and lint: Ruby ${{ matrix.ruby }}"
     steps:
       - uses: actions/checkout@v4
       - name: Set up Ruby ${{ matrix.ruby }}
