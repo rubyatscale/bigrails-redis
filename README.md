@@ -95,7 +95,7 @@ If you request a wrapped connection for a non-pooled connection, it'll just retu
 
 ### Verifying Connections
 
-This library also allows you to verify connections on demand. If you want, perform the verification in a startup health check to make sure all your connections are valid. It will perform a simple [`PING` command](https://redis.io/commands/PING) and clsoe the connection if it was originally closed. This is to help reduce the number of connections you actually need open. An error will be raised if the connection is bad.
+This library also allows you to verify connections on demand. If you want, perform the verification in a startup health check to make sure all your connections are valid. It will perform a simple [`PING` command](https://redis.io/commands/PING) and close the connection if it was originally closed. This is to help reduce the number of connections you actually need open. An error will be raised if the connection is bad.
 
 ```ruby
 # Verify all connections:
