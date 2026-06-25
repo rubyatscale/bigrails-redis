@@ -13,7 +13,7 @@ module BigRails
           if config.pool_options.any?
             ensure_connection_pool_added!
 
-            ::ConnectionPool.new(config.pool_options) { build(config) }
+            ::ConnectionPool.new(**config.pool_options) { build(config) }
           else
             build(config)
           end
