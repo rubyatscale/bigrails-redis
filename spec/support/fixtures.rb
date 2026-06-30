@@ -1,17 +1,16 @@
 # frozen_string_literal: true
 
 require "pathname"
-require "ostruct"
 
 module Spec
   module Support
     module Fixtures
       def load_config(type)
-        allow(Rails).to receive(:application).and_return(
-          OpenStruct.new(paths: {
-            "config" => [Pathname.new("spec/fixtures/#{type}").expand_path]
-          })
-        )
+        paths = {
+          "config" => [Pathname.new("spec/fixtures/#{type}").expand_path]
+        }
+        application = double("Rails.application", paths: paths)
+        allow(Rails).to receive(:application).and_return(application)
       end
     end
   end
