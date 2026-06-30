@@ -22,7 +22,6 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
 
   spec.add_dependency "activesupport", ">= 6"
-  spec.add_dependency "ostruct"
   spec.add_dependency "railties", ">= 6"
   spec.add_dependency "redis", ">= 4"
 end
