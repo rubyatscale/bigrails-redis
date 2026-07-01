@@ -12,8 +12,9 @@ jobs:
     strategy:
       matrix:
         ruby:
-          - 3.3
-          - 3.4
+          - '3.3'
+          - '3.4'
+          - '4.0'
     env:
       BUNDLE_GEMFILE: Gemfile
     name: "Test and lint: Ruby ${{ matrix.ruby }}"
