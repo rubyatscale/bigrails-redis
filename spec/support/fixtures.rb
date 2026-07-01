@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "pathname"
-
 module Spec
   module Support
     module Fixtures
