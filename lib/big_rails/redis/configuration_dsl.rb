@@ -15,6 +15,7 @@ module BigRails
         @__configurations = {}
 
         file = File.join(Rails.application.paths["config"].first, FILENAME)
+        # rubocop:disable-next Gusto/NoMetaprogramming -- config/redis.rb is evaluated against this DSL by design
         instance_eval(File.read(file), file, 1)
 
         @__configurations.freeze

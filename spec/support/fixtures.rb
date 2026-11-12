@@ -5,9 +5,9 @@ module Spec
     module Fixtures
       def load_config(type)
         paths = {
-          "config" => [Pathname.new("spec/fixtures/#{type}").expand_path]
+          "config" => [Pathname.new("spec/fixtures/#{type}").expand_path],
         }
-        application = double("Rails.application", paths: paths)
+        application = instance_double(Rails::Application, paths:)
         allow(Rails).to receive(:application).and_return(application)
       end
     end

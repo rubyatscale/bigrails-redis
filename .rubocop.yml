@@ -1,0 +1,26 @@
+inherit_mode:
+  merge:
+    - Exclude
+    - Include
+
+inherit_gem:
+  rubocop-gusto:
+    - config/default.yml
+    - config/rails.yml
+
+plugins:
+  - rubocop-gusto
+
+AllCops:
+  TargetRubyVersion: 3.3
+
+Naming/FileName:
+  Exclude:
+    # Named after the gem, so `require "bigrails-redis"` and Bundler's auto-require find it.
+    - lib/bigrails-redis.rb
+
+RSpec/NotToNot:
+  Enabled: false
+
+Sorbet:
+  Enabled: false

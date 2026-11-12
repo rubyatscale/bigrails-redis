@@ -36,7 +36,7 @@ module BigRails
         end
 
         def build_redis_client(url:, **redis_options)
-          ::Redis.new(redis_options.merge(url: url))
+          ::Redis.new(redis_options.merge(url:))
         end
 
         def ensure_connection_pool_added!

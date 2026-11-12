@@ -9,8 +9,11 @@ on:
 permissions:
   contents: read
 
+# Mirrors the jobs in rubyatscale/shared-config's reusable ci.yml. This repo can't call that
+# workflow directly: its specs need a Redis service, and it has no Sorbet setup for the shared
+# type-check job.
 jobs:
-  test_and_lint:
+  run_tests:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -20,7 +23,7 @@ jobs:
           - '4.0'
     env:
       BUNDLE_GEMFILE: Gemfile
-    name: "Test and lint: Ruby ${{ matrix.ruby }}"
+    name: "Run tests: Ruby ${{ matrix.ruby }}"
     services:
       redis:
         image: redis:8
@@ -40,11 +43,25 @@ jobs:
         with:
           bundler-cache: true
           ruby-version: ${{ matrix.ruby }}
-      - name: Run tests and linter
-        run: bundle exec rake
+      - name: Run tests
+        run: bundle exec rspec
+  run_linter:
+    runs-on: ubuntu-latest
+    name: "Linter"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@7f797815d8adceb1c412e7abefdd1ab4abc47a5f # v1.335.0
+        with:
+          bundler-cache: true
+          ruby-version: '3.4'
+      - name: Run linter
+        run: bundle exec rubocop
   notify_on_failure:
     runs-on: ubuntu-latest
-    needs: [test_and_lint]
+    needs: [run_tests, run_linter]
     if: ${{ failure() && github.ref == 'refs/heads/main' }}
     steps:
       - uses: slackapi/slack-github-action@dcb1066f776dd043e64d0e8ba94ca15cc7e1875d # v4.0.0

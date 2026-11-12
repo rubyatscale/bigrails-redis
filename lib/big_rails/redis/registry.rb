@@ -38,7 +38,7 @@ module BigRails
       def disconnect
         each do |connection|
           if connection.is_a?(::ConnectionPool)
-            connection.reload { |conn| conn.close }
+            connection.reload(&:close)
           else
             connection.close
           end
@@ -82,6 +82,7 @@ module BigRails
         unless configurations.key?(name)
           raise UnknownConnection, "connection for '#{name}' is not registered"
         end
+
         name
       end
 

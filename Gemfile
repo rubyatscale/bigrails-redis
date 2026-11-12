@@ -5,7 +5,8 @@ source "https://rubygems.org"
 # Specify your gem's dependencies in bigrails-redis.gemspec
 gemspec
 
+gem "connection_pool"
 gem "rake"
 gem "rspec"
-gem "standard"
-gem "connection_pool"
+gem "rubocop-gusto", require: false
+gem "rubocop-rails", require: false
