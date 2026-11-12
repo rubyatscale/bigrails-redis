@@ -10,7 +10,7 @@ RSpec.describe BigRails::Redis::Registry do
       it "raises error" do
         expect {
           instance.for("foo")
-        }.to raise_error(described_class::UnknownConnection, "connection for 'foo' is not registered")
+        }.to raise_error(BigRails::Redis::Registry::UnknownConnection, "connection for 'foo' is not registered")
       end
     end
 
@@ -93,6 +93,30 @@ RSpec.describe BigRails::Redis::Registry do
 
         instance.verify!
       end
+    end
+  end
+
+  describe "#disconnect" do
+    it "closes a plain connection" do
+      redis = instance.for("default")
+      redis.ping
+
+      instance.disconnect
+
+      expect(redis).not_to be_connected
+    end
+
+    it "closes pooled connections and leaves the pool usable" do
+      pool = instance.for("pooled")
+      pooled_redis = pool.with do |redis|
+        redis.ping
+        redis
+      end
+
+      instance.disconnect
+
+      expect(pooled_redis).not_to be_connected
+      expect(pool.with(&:ping)).to eq("PONG")
     end
   end
 end

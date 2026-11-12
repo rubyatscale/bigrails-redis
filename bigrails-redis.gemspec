@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir["{lib,exe}/**/*", "README.md"]
   spec.bindir = "exe"
-  spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
+  spec.executables = spec.files.grep(%r(\Aexe/)) { |f| File.basename(f) }
 
   spec.add_dependency "activesupport", ">= 6"
   spec.add_dependency "railties", ">= 6"

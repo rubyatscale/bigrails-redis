@@ -15,9 +15,12 @@ bundle exec rspec
 # Run a single spec file
 bundle exec rspec spec/path/to/spec.rb
 
-# Lint (uses StandardRB, not RuboCop)
-bundle exec standardrb
-bundle exec standardrb --fix  # auto-correct
+# Lint (RuboCop with rubocop-gusto)
+bin/rubocop
+bin/rubocop -a  # safe auto-correct
+
+# Tests and lint together (CI runs them as separate jobs)
+bundle exec rake
 ```
 
 ## Architecture
